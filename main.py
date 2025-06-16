@@ -122,7 +122,7 @@ def get_task(task_id: UUID):
 @app.patch("/tasks/{task_id}/complete")
 def mark_task_complete(task_id: UUID, completed: bool):
     task = repo.update_task_status(task_id, completed)
-    if nottask:
+    if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return task
 
